@@ -15,7 +15,7 @@ def impute_missing_data(data, strategy='mean', columns=None):
     
     for col in columns:
         if strategy == 'mean':
-            data[col].fillna(data[col].mean(), inplace=True)
+            data[col] = data[col].fillna(data[col].mean())
         elif strategy == 'median':
             data[col].fillna(data[col].median(), inplace=True)
         elif strategy == 'mode':

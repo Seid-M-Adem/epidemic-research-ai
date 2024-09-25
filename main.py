@@ -1,28 +1,41 @@
+import os
 from src.data_processing import load_data, preprocess_data
-from src.data_imputation import impute_missing_data
-from src.literature_review import generate_literature_review_with_urls
-from src.report_generator import generate_pdf_paper, generate_word_paper
+from src.report_generator import generate_pdf_paper, generate_graph
 
-# Step 1: Load and preprocess data
-data = load_data()
-data = preprocess_data(data)
+def main():
+    # Step 1: Load Data
+    raw_data_path = 'data/raw/your_raw_data.csv'  # Update with your actual file path
+    if not os.path.exists(raw_data_path):
+        print(f"Error: Data file {raw_data_path} does not exist.")
+        return
 
-# Step 2: Impute missing data (if any)
-columns_to_impute = ['confirmed_cases', 'deaths', 'recovered', 'vaccinated']
-data_imputed = impute_missing_data(data, columns=columns_to_impute)
+    # Load the data
+    data = load_data(raw_data_path)
 
-# Step 3: Generate literature review (from sample URLs in literature_fetcher)
-generate_literature_review_with_urls()
+    # Step 2: Preprocess Data
+    processed_data = preprocess_data(data)
 
-# Step 4: Generate scientific report
-title = "Epidemic Research: Real-World Data Analysis"
-introduction = "This study explores the impact of a real-world epidemic across multiple countries."
-methods = "Data was collected from a real-world-like dataset, missing values were imputed using the mean strategy."
-results = f"Data Imputation Results: {data_imputed.describe()}"
-discussion = "The results indicate trends in infection, death, and recovery rates across the studied countries."
-conclusion = "Future research involves creating predictive models for epidemic outbreaks."
-references = open('/workspaces/epidemic-research-ai/references/literature_input.txt').read()
+    # Print columns of processed data
+    print("Columns in the processed data:")
+    print(processed_data.columns.tolist())
 
-# Generate reports
-generate_pdf_paper(title, introduction, methods, results, discussion, conclusion, references)
-generate_word_paper(title, introduction, methods, results, discussion, conclusion, references)
+    # Step 3: Generate Graphs
+    graph_path = 'reports/sample_graph.png'
+    column_to_visualize = 'cases'  # Change this to the actual column you want to visualize
+    generate_graph(processed_data, graph_path, column_to_visualize)
+
+    # Step 4: Prepare Content for the Report
+    title = "Epidemic Research AI"
+    introduction = "This paper discusses the impacts of epidemics on society and various factors affecting the spread of diseases."
+    literature_review = "Previous studies show that understanding the spread of diseases is crucial for public health."
+    methods = "Data was collected from various public health sources and analyzed using statistical methods."
+    results = "The results indicate a significant correlation between public health measures and the rate of infection."
+    discussion = "These results suggest that timely interventions can effectively control the spread of diseases."
+    conclusion = "In conclusion, this study highlights the importance of data-driven approaches in epidemic management."
+    references = "Author A et al. (Year), Author B et al. (Year)..."
+
+    # Step 5: Generate PDF Report
+    generate_pdf_paper(title, introduction, literature_review, methods, results, discussion, conclusion, references, graph_path)
+
+if __name__ == "__main__":
+    main()
