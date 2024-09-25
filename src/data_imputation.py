@@ -1,4 +1,3 @@
-
 def impute_missing_data(data, strategy='mean', columns=None):
     """
     Impute missing values in the specified columns using the given strategy.
@@ -11,6 +10,9 @@ def impute_missing_data(data, strategy='mean', columns=None):
     Returns:
         pd.DataFrame: Data with imputed values.
     """
+    if columns is None:
+        columns = ['confirmed_cases', 'deaths', 'recovered', 'vaccinated']
+    
     for col in columns:
         if strategy == 'mean':
             data[col].fillna(data[col].mean(), inplace=True)
