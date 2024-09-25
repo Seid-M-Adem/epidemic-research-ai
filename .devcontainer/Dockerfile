@@ -1,22 +1,20 @@
+# Base image - Python 3.9
+FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
 
-# Use the official Python image
-FROM python:3.9-slim
+# Install any additional dependencies
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install curl
 
-# Set the working directory
-WORKDIR /workspace
+# Install pip, if not already installed
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3 get-pip.py
 
-# Copy the current directory contents into the container
-COPY . /workspace
+# Set the working directory in the container
+WORKDIR /workspaces/epidemic-research-ai
 
-# Install dependencies
-RUN pip install --upgrade pip
+# Install Python dependencies
+COPY requirements.txt /workspaces/epidemic-research-ai/
 RUN pip install -r requirements.txt
 
-# Install additional tools if needed (e.g., git)
-RUN apt-get update && apt-get install -y git
-
-# Expose port if needed
-EXPOSE 8000
-
-# Set default command
-CMD [ "python", "main.py" ]
+# Expose default Jupyter port
+EXPOSE 8888

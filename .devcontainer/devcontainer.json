@@ -1,14 +1,16 @@
 {
   "name": "Epidemic Research AI",
-  "dockerFile": "Dockerfile",
-  "extensions": [
-    "ms-python.python",
-    "ms-toolsai.jupyter",
-    "ms-python.vscode-pylance"
-  ],
-  "settings": {
-    "python.pythonPath": "/usr/local/bin/python",
-    "terminal.integrated.shell.linux": "/bin/bash"
+  "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
   },
-  "postCreateCommand": "pip install -r requirements.txt"
+  "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+      "ms-python.python",        // Python extension for VS Code
+      "ms-toolsai.jupyter"       // Jupyter Notebook support
+  ],
+  "postCreateCommand": "pip install -r requirements.txt",
+  "remoteUser": "codespace"
 }
