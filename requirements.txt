@@ -3,3 +3,8 @@ fpdf
 python-docx
 requests
 beautifulsoup4
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter

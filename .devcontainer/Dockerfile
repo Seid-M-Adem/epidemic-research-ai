@@ -1,20 +1,14 @@
-# Base image - Python 3.9
+# Use the official Python image from Docker Hub
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.9
 
-# Install any additional dependencies
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install curl
+# Set the working directory
+WORKDIR /app
 
-# Install pip, if not already installed
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python3 get-pip.py
+# Copy the requirements file to the container
+COPY requirements.txt ./
 
-# Set the working directory in the container
-WORKDIR /workspaces/epidemic-research-ai
+# Install the required Python packages
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Python dependencies
-COPY requirements.txt /workspaces/epidemic-research-ai/
-RUN pip install -r requirements.txt
-
-# Expose default Jupyter port
-EXPOSE 8888
+# Copy the rest of the application code to the container
+COPY . .
