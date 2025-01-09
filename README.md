@@ -59,7 +59,7 @@ To get started, clone the repository to your local machine:
 
 bash
 Copy code
-git clone https://github.com/your-username/epidemic-research-ai.git
+git clone: https://github.com/Seid-M-Adem/epidemic-research-ai.git
 cd epidemic-research-ai
 
 # 2. Install Dependencies
