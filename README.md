@@ -1,5 +1,27 @@
 # Epidemic Research AI
 
+# Epidemic Research AI
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Seid-M-Adem/epidemic-research-ai/build.yml)](https://github.com/Seid-M-Adem/epidemic-research-ai/actions)
+[![License](https://img.shields.io/github/license/Seid-M-Adem/epidemic-research-ai)](LICENSE)
+[![Code Coverage](https://img.shields.io/codecov/c/github/Seid-M-Adem/epidemic-research-ai)](https://codecov.io/gh/Seid-M-Adem/epidemic-research-ai)
+
+## Overview
+Epidemic Research AI is a cutting-edge tool for analyzing and simulating epidemic data using advanced AI techniques. It helps epidemiologists, researchers, and policymakers make data-driven decisions.
+
+## Features
+- 🔍 **Epidemiological Data Analysis**
+- 📊 **Realistic Synthetic Data Generation**
+- ⚙️ **Customizable Models and Parameters**
+- 🚀 **Scalable and Fast**
+
+## Installation
+```bash
+git clone https://github.com/Seid-M-Adem/epidemic-research-ai.git
+cd epidemic-research-ai
+pip install -r requirements.txt
+
+
 A comprehensive AI-powered epidemic research tool for analyzing real-world epidemic data, imputing missing values, fetching literature, and generating scientific reports in both PDF and Word formats.
 
 ## Project Structure
